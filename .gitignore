@@ -1,0 +1,13 @@
+# Arquivos compilados
+target/
+*.class
+
+# Configurações com dados sensíveis
+application.properties
+
+# Arquivos do VS Code
+.vscode/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
