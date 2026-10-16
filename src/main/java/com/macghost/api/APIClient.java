@@ -135,7 +135,7 @@ public class APIClient {
         return weather;
     }
 
-    /* Conversão de objeto json (resposta API) => informações */
+    /* Conversão de objeto json (resposta API) => objeto Weather */
     private Weather converterWeather(String corpo) {
         JsonObject json = JsonParser.parseString(corpo)
                 .getAsJsonObject();

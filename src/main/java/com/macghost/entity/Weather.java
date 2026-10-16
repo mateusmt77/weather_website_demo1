@@ -1,3 +1,5 @@
+package com.macghost.entity;
+
 public class Weather {
 
     private String cidade;
@@ -27,4 +29,29 @@ public class Weather {
             this.descricao = descricao.trim();
         }
     }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 }
