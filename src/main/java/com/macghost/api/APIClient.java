@@ -35,13 +35,19 @@ public class APIClient {
     private final APIConfig config;
 
     public APIClient() {
-        this.client = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_2)
-                .connectTimeout(Duration.ofSeconds(10))
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .build();
+            this.client = HttpClient.newBuilder()
+                            .version(HttpClient.Version.HTTP_2)
+                            .connectTimeout(Duration.ofSeconds(10))
+                            .followRedirects(HttpClient.Redirect.NORMAL)
+                            .build();
 
-        this.config = new APIConfig();
+            this.config = new APIConfig();
+    }
+    
+    // Construtor que também permite injetar dependências simuladas => Tests
+    public APIClient(HttpClient client, APIConfig config) {
+        this.client = client;
+        this.config = config;
     }
 
     public Weather getWeather(String cidadeBusca) {
