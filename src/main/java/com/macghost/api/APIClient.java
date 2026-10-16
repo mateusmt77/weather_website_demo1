@@ -188,10 +188,12 @@ public class APIClient {
                 + System.lineSeparator();
 
         try {
+            Files.createDirectories(ARQUIVO_LOG.getParent());
             Files.writeString(
                     ARQUIVO_LOG,
                     linha,
                     StandardCharsets.UTF_8,
+                    StandardOpenOption.CREATE,
                     StandardOpenOption.APPEND
             );
 

@@ -11,3 +11,6 @@ application.properties
 # Arquivos do sistema operacional
 .DS_Store
 Thumbs.db
+
+# Logs gerados em tempo de execucao
+logs/
