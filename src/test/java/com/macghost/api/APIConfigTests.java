@@ -6,16 +6,23 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Supplier;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class APIConfigTests {
 
+    /* retorna uma fonte de dados com mocks para edição */
     @SuppressWarnings("unchecked")
     private Supplier<InputStream> fonteSimulada() {
         return mock(Supplier.class);
@@ -25,6 +32,7 @@ class APIConfigTests {
         return new ByteArrayInputStream(conteudo.getBytes(StandardCharsets.ISO_8859_1));
     }
 
+    /* teste para verificar a leitura correta da chave da API do arquivo .properties */
     @Test
     void deveLerChaveDasPropriedadesSemArquivoReal() {
         Supplier<InputStream> fonte = fonteSimulada();

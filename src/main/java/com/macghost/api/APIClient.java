@@ -44,7 +44,6 @@ public class APIClient {
             this.config = new APIConfig();
     }
     
-    // Construtor que também permite injetar dependências simuladas => Tests
     public APIClient(HttpClient client, APIConfig config) {
         this.client = client;
         this.config = config;
