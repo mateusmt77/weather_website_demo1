@@ -7,7 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
@@ -113,5 +115,24 @@ class APIConfigTests {
     void deveRejeitarFonteNula() {
         assertThrows(NullPointerException.class,
                 () -> new APIConfig((Supplier<InputStream>) null));
+    }
+
+    @Test
+    void deveLerChaveWeatherSiteApiKey() {
+        Supplier<InputStream> fonte = fonteSimulada();
+        when(fonte.get()).thenReturn(propriedades("WEATHER_SITE_API_KEY=minha-chave-env\n"));
+
+        APIConfig config = new APIConfig(fonte);
+
+        assertEquals("minha-chave-env", config.getApiKey());
+    }
+
+    @Test
+    void deveCarregarChaveDoArquivoEnvPadraoQuandoPresente() {
+        if (new java.io.File(".env").exists()) {
+            APIConfig config = new APIConfig();
+            assertNotNull(config.getApiKey());
+            assertFalse(config.getApiKey().isBlank());
+        }
     }
 }

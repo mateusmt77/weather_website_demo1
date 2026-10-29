@@ -1,6 +1,7 @@
 # Arquivos compilados
 target/
 *.class
+*.env
 
 # Configurações com dados sensíveis
 application.properties
